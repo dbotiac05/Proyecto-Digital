@@ -255,6 +255,34 @@ stateDiagram-v2
 
 Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma parte de sistemas automatizados de control de nivel de agua.
 
+# Diagrama Funcional del Sistema de Control de Nivel de Agua
+
+<img width="1925" height="3845" alt="Untitled diagram _ Mermaid Chart-2025-07-21-212210" src="https://github.com/user-attachments/assets/eac56dbb-dde4-41ea-9434-e9e6b5cd452e" />
+
+
+---
+
+### Componentes:
+
+
+- **Configuración**: Inicializa el sistema y los registros.
+- **GenerarTrigger**: Envía el pulso ultrasónico desde el sensor HC-SR04.
+- **EsperaEcho**: Monitorea la señal de Echo del HC-SR04.
+- **CapturaEcho**: Mide el tiempo del pulso de retorno.
+- **CalcularDistancia**: Calcula la distancia usando el tiempo medido.
+- **Resultado**: Guarda o muestra la distancia medida.
+- **Error**: Indica una falla por falta de respuesta (Timeout).
+- **TriggerON**: Pone Trigger = 1, activando el pulso ultrasónico.
+- **ConteoON**: Cuenta ciclos para controlar la duración del Trigger.
+- **TriggerOFF**: Pone Trigger = 0, finalizando el pulso.
+- **Escucha**: Espera un flanco de subida en Echo para comenzar la medición.
+- **Timeout**: Indica que no se recibió Echo a tiempo; salta a error.
+- **MedirTiempo**: Mide cuánto tiempo permanece Echo en alto.
+- **FinCaptura**: Detecta flanco de bajada en Echo; finaliza el conteo.
+- **CalcularDistancia**: Aplica la fórmula de distancia:
+     distancia = (con_in × 34300) / (2 × 25e6)
+
+
 
 
 
@@ -283,33 +311,6 @@ Video del proyecto
 
 
 
-
-# Diagrama Funcional del Sistema de Control de Nivel de Agua
-
-<img width="1925" height="3845" alt="Untitled diagram _ Mermaid Chart-2025-07-21-212210" src="https://github.com/user-attachments/assets/eac56dbb-dde4-41ea-9434-e9e6b5cd452e" />
-
-
----
-
-### Componentes:
-
-
-- **Configuración**: Inicializa el sistema y los registros.
-- **GenerarTrigger**: Envía el pulso ultrasónico desde el sensor HC-SR04.
-- **EsperaEcho**: Monitorea la señal de Echo del HC-SR04.
-- **CapturaEcho**: Mide el tiempo del pulso de retorno.
-- **CalcularDistancia**: Calcula la distancia usando el tiempo medido.
-- **Resultado**: Guarda o muestra la distancia medida.
-- **Error**: Indica una falla por falta de respuesta (Timeout).
-- **TriggerON**: Pone Trigger = 1, activando el pulso ultrasónico.
-- **ConteoON**: Cuenta ciclos para controlar la duración del Trigger.
-- **TriggerOFF**: Pone Trigger = 0, finalizando el pulso.
-- **Escucha**: Espera un flanco de subida en Echo para comenzar la medición.
-- **Timeout**: Indica que no se recibió Echo a tiempo; salta a error.
-- **MedirTiempo**: Mide cuánto tiempo permanece Echo en alto.
-- **FinCaptura**: Detecta flanco de bajada en Echo; finaliza el conteo.
-- **CalcularDistancia**: Aplica la fórmula de distancia:
-     distancia = (con_in × 34300) / (2 × 25e6)
 
 
 
