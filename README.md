@@ -56,14 +56,13 @@ Objetivos especificos
 **🔁 Confiabilidad operativa**
 - El sistema debe funcionar de manera continua y precisa sin fallas durante largos periodos.
 
-**Simulación con testbenches
-- 
 **📈 Simulación funcional**
 - Compatible con simuladores como Icarus Verilog + GTKWave.
   
 **📝 Código documentado**
 - Cada módulo está comentado para facilitar su comprensión y mantenimiento.
 ##
+**Simulación con testbenches**
 ##
 Diagrama ASM/ Maquina de estados/ diagramas funcionales:
 ##
