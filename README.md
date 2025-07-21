@@ -200,23 +200,48 @@ Video del proyecto
 ##
 
 
-flowchart LR
-    SC[Sistema Central] -->|Petición de consulta| MCU[Microcontrolador]
+# 🚦 Máquina de Estados del Sistema de Control de Agua
 
-    subgraph Sensado
-        TR[Trigger al Sensor HC-SR04] --> EC[Echo recibido]
-        EC --> DS[Distancia medida]
-    end
+```mermaid
+stateDiagram-v2
+    [*] --> Configuracion
+    Configuracion --> EsperaConsulta: "Inicialización\nhardware"
+    
+    state EsperaConsulta {
+        [*] --> Inactivo
+        Inactivo --> Activo: "consulta==1"
+        Activo --> Inactivo: "Timeout 5s"
+    }
+    
+    Activo --> Medicion: "Trigger\n(Envío pulso)"
+    Medicion --> Comparacion: "Echo\n(con_in = lectura)"
+    
+    state Comparacion {
+        [*] --> Evaluar
+        Evaluar --> TanqueVacio: "con_in < umbral\n(capacidad=0)"
+        Evaluar --> TanqueLleno: "con_in >= umbral\n(capacidad=1)"
+    }
+    
+    TanqueVacio --> [*]
+    TanqueLleno --> Calidad: "Verificar\ncalidad==1?"
+    
+    Calidad --> BombaLibre: "Calidad OK"
+    Calidad --> Bloqueo: "Calidad\nNo OK"
+    
+    BombaLibre --> FlujoON: "FLUJO=1"
+    Bloqueo --> FlujoOFF: "FLUJO=0"
+    
+    FlujoON --> EsperaConsulta
+    FlujoOFF --> EsperaConsulta
 
-    MCU --> TR
-    DS --> CMP[Comparador de umbral]
-    SC --> QC[Entrada de Calidad de Agua]
-
-    CMP -- "Nivel bajo" --> FL0[Flujo = 0]
-    CMP -- "Nivel alto" --> CAP[capacidad = 1]
-
-    CAP --> QC
-    QC -- "Calidad OK" --> FL1[Flujo = 1]
-    QC -- "Calidad NO" --> FL0
-
-    FL0 & FL1 --> OUT[Salida: Control de Bomba]
+    note right of Configuracion
+        **Variables clave:**
+        - umbral: 150cm (constante)
+        - calidad: Señal externa (0/1)
+        - FLUJO: Salida digital
+    end note
+```
+**Leyenda:**  
+🔵 Transición automática  
+🟢 Condición verdadera  
+🔴 Condición falsa  
