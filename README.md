@@ -143,7 +143,7 @@ stateDiagram-v2
 
 ---
 
-Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma parte de sistemas automatizados de control de nivel de agua.
+Este FSM se implementa a una ESP32 y forma parte de sistemas automatizados de control de nivel de agua.
 
 
 
@@ -259,7 +259,7 @@ stateDiagram-v2
 
 ---
 
-Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma parte de sistemas automatizados de control de nivel de agua.
+Este FSM se implementa en el  microcontrolador  ESP32 y forma parte de sistemas automatizados de control de nivel de agua.
 
 # Diagrama Funcional del Sistema de Control de Nivel de Agua
 
