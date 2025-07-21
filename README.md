@@ -29,7 +29,7 @@ REQUERMIENTOS DEL PROYECTO
 ##
 ✅ Requerimientos Funcionales
 
-#🧭 Medición de distancia usando el sensor ultrasónico
+???🧭 Medición de distancia usando el sensor ultrasónico
    - El sensor ultrasónico HC-SR04 mide la distancia al nivel de agua mediante pulsos de eco.
      
 ##⚙️Procesamiento digital de la señal de tiempo de retorno en una FPGA.
