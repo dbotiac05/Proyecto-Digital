@@ -89,8 +89,12 @@ Diagrama ASM/ Maquina de estados/ diagramas funcionales:
 
 ![Imagen de WhatsApp 2025-07-21 a las 01 13 21_2349670d](https://github.com/user-attachments/assets/9885896b-79a2-40b0-9d4e-b2cefa933da2)
 
-**MAPAS DIAGRAMA GENERAL**
 **Maquinas de Estado**
+
+
+
+**MAPAS DIAGRAMA GENERAL**
+
 # Máquina de Estados Finita (FSM) del Sistema de Control de Flujo
 
 Este diagrama representa el flujo de control del sistema de medición de nivel de agua y activación de bomba, basado en el sensor ultrasónico HC-SR04 y una señal de calidad externa.
