@@ -252,56 +252,51 @@ stateDiagram-v2
 
 
 
+# ⚙️ Diagrama Funcional del Sistema
+
 ```mermaid
 flowchart TB
-    %% Definición de nodos
-    HC_SR04[["HC-SR04\nUltrasónico"]]
-    Bomba[["Bomba de Agua"]]
-    Micro[["Microcontrolador\n(Procesamiento)"]]
-    Comparador{["Comparador\ncon_in vs umbral"]}
-    Centro[["Sistema Central"]]
-    UI[["Interfaz Usuario"]]
+    %% Definición simplificada de nodos
+    HC_SR04["HC-SR04 Ultrasónico"]
+    Bomba["Bomba de Agua"]
+    Micro["Microcontrolador"]
+    Comparador{"Comparador\ncon_in vs umbral"}
+    Centro["Sistema Central"]
+    UI["Interfaz Usuario"]
 
-    %% Conexiones principales
+    %% Conexiones
     HC_SR04 -->|Trigger/Echo| Micro
     Micro -->|con_in| Comparador
     Comparador -->|FLUJO| Bomba
     Centro -->|calidad| Micro
     UI <-->|consulta| Micro
 
-    %% Agrupamientos por capas
-    subgraph Capa_Física["🔧 Capa Física"]
+    %% Agrupamientos (sintaxis compatible)
+    subgraph Capa_Fisica["Capa Física"]
         HC_SR04
         Bomba
     end
 
-    subgraph Capa_Control["💻 Capa de Control"]
+    subgraph Capa_Control["Capa de Control"]
         Micro
         Comparador
     end
 
-    subgraph Capa_Superior["🌐 Capa Superior"]
+    subgraph Capa_Superior["Capa Superior"]
         Centro
         UI
     end
 
-    %% Estilos
+    %% Estilos básicos
     classDef fisica fill:#f0fff0,stroke:#2e8b57
     classDef control fill:#f0f8ff,stroke:#4682b4
     classDef superior fill:#fff0f5,stroke:#db7093
     
-    class Capa_Física fisica
+    class Capa_Fisica fisica
     class Capa_Control control
     class Capa_Superior superior
-
-    %% Leyenda
-    legend[[
-        **Guía de Colores**|
-        <span style='color:#2e8b57'>Verde</span>: Dispositivos físicos|
-        <span style='color:#4682b4'>Azul</span>: Procesamiento|
-        <span style='color:#db7093'>Rosa</span>: Sistemas externos
-    ]]
 ```
+
 **Notas de implementación:**
 1. GitHub no soporta el elemento `legend->` nativo en Mermaid
 2. Usamos `%%` para comentarios (no afectan el renderizado)
