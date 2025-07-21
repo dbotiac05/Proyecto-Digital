@@ -305,3 +305,39 @@ flowchart TD
 2. Usamos `%%` para comentarios (no afectan el renderizado)
 3. Los `subgraph` deben tener nombres SIN espacios (usar guiones bajos)
 4. Los nodos deben definirse antes de conectarse
+
+
+
+
+
+
+
+
+##
+##
+```mermaid
+flowchart LR
+    %% Nodos principales
+    MCU[["<div style='font-size:18px;font-weight:bold'>🧠 Microcontrolador</div><hr><div style='text-align:left;font-size:14px'>• Clock 25MHz<br>• con_out (Trigger)<br>• con_in (Echo)<br>• Cálculo distancia</div>"]] -->|"📤 Trigger (10μs)"| SENSOR[["<div style='font-size:18px;font-weight:bold'>🔍 HC-SR04</div><hr><div style='text-align:left;font-size:14px'>• Trigger ← GPIO<br>• Echo → Interrupt<br>• Rango: 2-400cm</div>"]]
+    
+    SENSOR -->|"📥 Echo (Pulso)"| MCU
+    MCU -->|"📊 distancia = (con_in×0.0686) cm"| DISPLAY[["<div style='font-size:18px;font-weight:bold'>🖥 Display</div><hr><div style='text-align:left;font-size:14px'>• Mostrar distancia<br>• Indicador timeout</div>"]]
+
+    %% Estilos mejorados
+    classDef mcu fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#333
+    classDef sensor fill:#fff8e1,stroke:#ffa000,stroke-width:2px
+    classDef output fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    
+    class MCU mcu
+    class SENSOR sensor
+    class DISPLAY output
+
+    %% Leyenda automática
+    legend->
+        |
+        <span style='color:#1976d2;font-weight:bold'>Microcontrolador</span> |
+        <span style='color:#ffa000;font-weight:bold'>Sensor</span> |
+        <span style='color:#388e3c;font-weight:bold'>Salida</span> |
+        <span style='color:#666'>📤: Salida digital</span> |
+        <span style='color:#666'>📥: Entrada por interrupción</span>
+    endlegend
