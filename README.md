@@ -15,19 +15,24 @@ Bienvenidos a nuestro repositorio del proyecto final de nuestra clase de electr�
 🎯 Objetivos Específicos
 
 📏 Diseñar el sistema de adquisición de datos
-Utilizar el sensor HC-SR04 con el ESP32 para medir la distancia hasta la superficie del agua.
+
+- Utilizar el sensor HC-SR04 con el ESP32 para medir la distancia hasta la superficie del agua.
 
 🧠 Implementar el procesamiento digital en FPGA
-Gestionar el pulso de disparo y la medición del eco del sensor mediante lógica digital.
+
+- Gestionar el pulso de disparo y la medición del eco del sensor mediante lógica digital.
 
 📲 Integrar interfaz de usuario o canal de salida
-Mostrar el nivel de agua en una app o tablero vía Bluetooth usando el ESP32.
+
+- Mostrar el nivel de agua en una app o tablero vía Bluetooth usando el ESP32.
 
 🔍 Verificar y validar el sistema completo
-Probar el prototipo con distintos niveles de agua usando simulaciones y mediciones reales.
+
+- Probar el prototipo con distintos niveles de agua usando simulaciones y mediciones reales.
 
 📚 Documentar todo el proceso de desarrollo
-Incluir diagramas, requerimientos, códigos, bitácoras y resultados del proyecto.
+
+- Incluir diagramas, requerimientos, códigos, bitácoras y resultados del proyecto.
 
 ##
 ![Imagen de WhatsApp 2025-07-20 a las 21 04 23_a6fc7017](https://github.com/user-attachments/assets/d2cbcf3b-8a8b-4d64-a418-706c8ba06e98)
