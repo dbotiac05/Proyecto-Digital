@@ -199,7 +199,7 @@ Logs de make log-prn, make log-syn diagramas de flujo
 Video del proyecto
 ##
 
-
+##
 # 🚦 Máquina de Estados del Sistema de Control de Agua
 
 ```mermaid
@@ -246,43 +246,64 @@ stateDiagram-v2
 🟢 Condición verdadera  
 🔴 Condición falsa  
 
+##
+
 
 
 
 
 ```mermaid
 flowchart TB
-    subgraph SENSOR["🔧 Capa Física"]
-        HC_SR04[[HC-SR04\nUltrasónico]]
-        Bomba[("🚰 Bomba de Agua")]
-    end
-    
-    subgraph CONTROL["💻 Capa de Control"]
-        Micro[["🖥️ Microcontrolador\n(Procesamiento)"]]
-        Comparador{["⚖️ Comparador\ncon_in vs umbral"]}
-    end
-    
-    subgraph SUPER["🌐 Capa Superior"]
-        Centro[["📡 Sistema Central"]]
-        UI[["🖥️ Interfaz Usuario"]]
-    end
-    
-    %% Conexiones
+    %% Definición de nodos
+    HC_SR04[["HC-SR04\nUltrasónico"]]
+    Bomba[["Bomba de Agua"]]
+    Micro[["Microcontrolador\n(Procesamiento)"]]
+    Comparador{["Comparador\ncon_in vs umbral"]}
+    Centro[["Sistema Central"]]
+    UI[["Interfaz Usuario"]]
+
+    %% Conexiones principales
     HC_SR04 -->|Trigger/Echo| Micro
     Micro -->|con_in| Comparador
     Comparador -->|FLUJO| Bomba
     Centro -->|calidad| Micro
     UI <-->|consulta| Micro
-    
+
+    %% Agrupamientos por capas
+    subgraph Capa_Física["🔧 Capa Física"]
+        HC_SR04
+        Bomba
+    end
+
+    subgraph Capa_Control["💻 Capa de Control"]
+        Micro
+        Comparador
+    end
+
+    subgraph Capa_Superior["🌐 Capa Superior"]
+        Centro
+        UI
+    end
+
     %% Estilos
-    style SENSOR fill:#f0fff0,stroke:#2e8b57
-    style CONTROL fill:#f0f8ff,stroke:#4682b4
-    style SUPER fill:#fff0f5,stroke:#db7093
+    classDef fisica fill:#f0fff0,stroke:#2e8b57
+    classDef control fill:#f0f8ff,stroke:#4682b4
+    classDef superior fill:#fff0f5,stroke:#db7093
     
-    legend->
-        **Color Guide**|
-        Verde: Dispositivos físicos|
-        Azul: Procesamiento|
-        Rosa: Sistemas externos
-    endlegend
+    class Capa_Física fisica
+    class Capa_Control control
+    class Capa_Superior superior
+
+    %% Leyenda
+    legend[[
+        **Guía de Colores**|
+        <span style='color:#2e8b57'>Verde</span>: Dispositivos físicos|
+        <span style='color:#4682b4'>Azul</span>: Procesamiento|
+        <span style='color:#db7093'>Rosa</span>: Sistemas externos
+    ]]
 ```
+**Notas de implementación:**
+1. GitHub no soporta el elemento `legend->` nativo en Mermaid
+2. Usamos `%%` para comentarios (no afectan el renderizado)
+3. Los `subgraph` deben tener nombres SIN espacios (usar guiones bajos)
+4. Los nodos deben definirse antes de conectarse
