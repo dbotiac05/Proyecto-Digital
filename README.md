@@ -200,42 +200,23 @@ Video del proyecto
 ##
 
 
+flowchart LR
+    SC[Sistema Central] -->|Petición de consulta| MCU[Microcontrolador]
 
-                +-------------------+
-                |  Sistema Central  |
-                +--------+----------+
-                         |
-                         v
-                         
-              +----------+----------+
-              |   Microcontrolador  |
-              +----------+----------+
-                         |
-                         
-            +------------+------------+
-            |                         |
-            
-+-------------------+     +-------------------+
-|  Sensor Ultrasónico|    | Señal de Calidad |
-|  (HC-SR04)         |     |  desde Central   |
-+---------+----------+     +------------------+
-          | con_in
-          v
-          
-+-------------------+
-| Comparación con   |
-| umbral            |
-+---------+---------+
-          |                     +------------------+
-          | capacidad=1         | capacidad=0      |
-          v                     v
-+-------------------+   +-------------------------+
-| Evaluar Calidad   |   |     Flujo = 0           |
-+---------+---------+   +-------------------------+
-          |
-          | calidad = 1
-          v
-+------------------------+
-| Activar bomba (flujo) |
-+------------------------+
+    subgraph Sensado
+        TR[Trigger al Sensor HC-SR04] --> EC[Echo recibido]
+        EC --> DS[Distancia medida]
+    end
 
+    MCU --> TR
+    DS --> CMP[Comparador de umbral]
+    SC --> QC[Entrada de Calidad de Agua]
+
+    CMP -- "Nivel bajo" --> FL0[Flujo = 0]
+    CMP -- "Nivel alto" --> CAP[capacidad = 1]
+
+    CAP --> QC
+    QC -- "Calidad OK" --> FL1[Flujo = 1]
+    QC -- "Calidad NO" --> FL0
+
+    FL0 & FL1 --> OUT[Salida: Control de Bomba]
