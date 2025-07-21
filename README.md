@@ -394,11 +394,6 @@ flowchart TD
 
 
 
-
-# Diagrama Funcional HC-SR04 (Versión Compatible GitHub)
-
-````markdown
-```mermaid
 flowchart TD
     %% ===== BLOQUES PRINCIPALES =====
     HARDWARE["🛠 Configuración Hardware
@@ -431,37 +426,9 @@ flowchart TD
     ECHO --> HARDWARE
 
     %% ===== ESTILOS BÁSICOS =====
+    classDef default fill=#f9f9f9,stroke=#333,stroke-width=1px
     class HARDWARE,TRIGGER,ECHO,SALIDA default
-text
 
-## Cambios realizados para compatibilidad:
-
-1. **Simplificación de nodos**:
-   - Eliminados los dobles corchetes `[[ ]]` que causaban error
-   - Mantenido el formato de texto con guiones
-
-2. **Conexiones simplificadas**:
-   - Removidas las etiquetas en las flechas
-   - Conservada la estructura básica de flujo
-
-3. **Estilos mínimos**:
-   - Usada clase `default` para todos los nodos
-   - Eliminada la leyenda compleja
-
-## Versión original con ajustes mínimos:
-
-```mermaid
-flowchart TD
-    HARDWARE[["Config Hardware|• Clock 25MHz|• con_out=0|• con_in=0"]]
-    TRIGGER[["Secuencia Trigger|1. Trigger=1|2. 15 ciclos|3. Trigger=0"]]
-    ECHO[["Captura Echo|• con_in=-97|• Incrementar|• Timeout:375"]]
-    SALIDA[["Salida con_in|distancia ∝ con_in"]]
-    
-    HARDWARE --> TRIGGER
-    TRIGGER --> ECHO
-    ECHO --> SALIDA
-    ECHO --> HARDWARE
-```
 
 
 
