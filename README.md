@@ -286,120 +286,46 @@ Video del proyecto
 
 # Diagrama Funcional del Sistema de Control de Nivel de Agua
 
-Este diagrama representa el flujo funcional general del sistema: desde la recepción de comandos hasta la activación de una bomba, pasando por el sensor ultrasónico y la verificación de la calidad del agua.
+<img width="1925" height="3845" alt="Untitled diagram _ Mermaid Chart-2025-07-21-212210" src="https://github.com/user-attachments/assets/eac56dbb-dde4-41ea-9434-e9e6b5cd452e" />
 
-```mermaid
-flowchart TD
-
-    A[Sistema Central] -->|Petición de lectura| B[Microcontrolador]
-    B --> C[Sensor Ultrasónico HC-SR04]
-    B --> D[Señal de Calidad]
-    
-    C --> E{con_in >= umbral?}
-    E -- No --> F[capacidad = 0]
-    F --> G[flujo = 0]
-
-    E -- Sí --> H[capacidad = 1]
-    H --> I{calidad == 1?}
-    I -- No --> G
-    I -- Sí --> J[flujo = 1]
-
-    G & J --> K[Activar bomba / salida FLUJO]
-```
 
 ---
 
 ### Componentes:
 
-- **Sistema Central**: Dispara la consulta del estado del sistema.
-- **Microcontrolador**: Controla el flujo lógico y gestiona la entrada/salida.
-- **Sensor HC-SR04**: Mide el nivel de agua en el tanque.
-- **Comparador**: Determina si el nivel es suficiente (basado en `umbral`).
-- **Señal de calidad**: Entrada binaria que valida la calidad del agua.
-- **Flujo**: Resultado final que activa o no la bomba de agua.
 
-Este diagrama describe visualmente la relación funcional entre los módulos involucrados.
-
-
-
-
-
-
-
-
-
-
-
+- **Configuración**: Inicializa el sistema y los registros.
+- **GenerarTrigger**: Envía el pulso ultrasónico desde el sensor HC-SR04.
+- **EsperaEcho**: Monitorea la señal de Echo del HC-SR04.
+- **CapturaEcho**: Mide el tiempo del pulso de retorno.
+- **CalcularDistancia**: Calcula la distancia usando el tiempo medido.
+- **Resultado**: Guarda o muestra la distancia medida.
+- **Error**: Indica una falla por falta de respuesta (Timeout).
+- **TriggerON**: Pone Trigger = 1, activando el pulso ultrasónico.
+- **ConteoON**: Cuenta ciclos para controlar la duración del Trigger.
+- **TriggerOFF**: Pone Trigger = 0, finalizando el pulso.
+- **Escucha**: Espera un flanco de subida en Echo para comenzar la medición.
+- **Timeout**: Indica que no se recibió Echo a tiempo; salta a error.
+- **MedirTiempo**: Mide cuánto tiempo permanece Echo en alto.
+- **FinCaptura**: Detecta flanco de bajada en Echo; finaliza el conteo.
+- **CalcularDistancia**: Aplica la fórmula de distancia:
+     distancia = (con_in × 34300) / (2 × 25e6)
 
 
 
 
 
 
-# Diagrama Funcional HC-SR04 (Versión Compatible GitHub)
 
-````markdown
-```mermaid
-flowchart TD
-    %% ===== BLOQUES PRINCIPALES =====
-    HARDWARE["🛠 Configuración Hardware
-    --------------------------
-    • Clock 25MHz
-    • con_out = 0
-    • con_in = 0"]
-    
-    TRIGGER["⚡ Secuencia Trigger
-    --------------------------
-    1. Trigger = 1
-    2. Esperar 15 ciclos
-    3. Trigger = 0"]
-    
-    ECHO["📡 Captura Echo
-    --------------------------
-    • con_in = -97
-    • Incrementar con_in
-    • Timeout: 375 ciclos"]
-    
-    SALIDA["💾 Salida con_in
-    --------------------------
-    Valor final:
-    distancia ∝ con_in"]
 
-    %% ===== CONEXIONES =====
-    HARDWARE --> TRIGGER
-    TRIGGER --> ECHO
-    ECHO --> SALIDA
-    ECHO --> HARDWARE
 
-    %% ===== ESTILOS BÁSICOS =====
-    class HARDWARE,TRIGGER,ECHO,SALIDA default
-```
 
-## Cambios realizados para compatibilidad:
 
-1. **Simplificación de nodos**:
-   - Eliminados los dobles corchetes `[[ ]]` que causaban error
-   - Mantenido el formato de texto con guiones
 
-2. **Conexiones simplificadas**:
-   - Removidas las etiquetas en las flechas
-   - Conservada la estructura básica de flujo
 
-3. **Estilos mínimos**:
-   - Usada clase `default` para todos los nodos
-   - Eliminada la leyenda compleja
 
-## Versión original con ajustes mínimos:
 
-```mermaid
-flowchart TD
-    HARDWARE[["Config Hardware|• Clock 25MHz|• con_out=0|• con_in=0"]]
-    TRIGGER[["Secuencia Trigger|1. Trigger=1|2. 15 ciclos|3. Trigger=0"]]
-    ECHO[["Captura Echo|• con_in=-97|• Incrementar|• Timeout:375"]]
-    SALIDA[["Salida con_in|distancia ∝ con_in"]]
-    
-    HARDWARE --> TRIGGER
-    TRIGGER --> ECHO
-    ECHO --> SALIDA
-    ECHO --> HARDWARE
-```
+
+
+
+
