@@ -24,17 +24,17 @@ Objetivos especificos
 ✅ Requerimientos Funcionales
 
 🧭 Medición de distancia usando el sensor ultrasónico
-   ??? El sensor ultrasónico HC-SR04 mide la distancia al nivel de agua mediante pulsos de eco.
+   ### El sensor ultrasónico HC-SR04 mide la distancia al nivel de agua mediante pulsos de eco.
 ⚙️Procesamiento digital de la señal de tiempo de retorno en una FPGA.
-   ??? La FPGA calcula el tiempo del eco y convierte el dato en una señal digital interpretable.
+   ### La FPGA calcula el tiempo del eco y convierte el dato en una señal digital interpretable.
 💧 Cálculo del nivel de agua y generación de alerta si es bajo o alto..
-  ??? Se transforma la distancia en una medida de nivel y se compara con umbrales definidos.
+   ### Se transforma la distancia en una medida de nivel y se compara con umbrales definidos.
 📡 Transmisión de datos desde la FPGA al ESP32 mediante UART.
-  ??? La FPGA envía el dato procesado al ESP32 mediante comunicación serial.
+   ### La FPGA envía el dato procesado al ESP32 mediante comunicación serial.
 🌐 Comunicación del dato medido a un servidor o aplicación.
- ??? El ESP32 transmite el nivel de agua a una aplicación via bluetooth (ESP32)
+   ### El ESP32 transmite el nivel de agua a una aplicación via bluetooth (ESP32)
 🧪 Sistema implementado 
- ??? Se revisa el hardware y se verifica  mediante simulación.
+   ### Se revisa el hardware y se verifica  mediante simulación.
 ##
 Diagrama ASM/ Maquina de estados/ diagramas funcionales:
 ##
