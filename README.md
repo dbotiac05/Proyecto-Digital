@@ -49,11 +49,18 @@ REQUERMIENTOS DEL PROYECTO
 
 ##
 ⚙️ Requerimientos No Funcionales
+
 ⏱️ Tiempo de respuesta adecuado
-El sistema debe responder a los cambios en el nivel de agua con una latencia mínima (< 1s).
+- El sistema debe responder a los cambios en el nivel de agua..
 
 🔁 Confiabilidad operativa
-El sistema debe funcionar de manera continua y precisa sin fallas durante largos periodos.
+- El sistema debe funcionar de manera continua y precisa sin fallas durante largos periodos.
+
+📈 Simulación funcional
+- Compatible con simuladores como Icarus Verilog + GTKWave.
+  
+📝 Código documentado
+- Cada módulo está comentado para facilitar su comprensión y mantenimiento.
 ##
 ##
 Diagrama ASM/ Maquina de estados/ diagramas funcionales:
