@@ -77,8 +77,12 @@ Objetivos especificos
 ##
 Diagrama ASM/ Maquina de estados/ diagramas funcionales:
 **Diagrma general**
+
 ![Imagen de WhatsApp 2025-07-21 a las 01 15 02_4c9b3a75](https://github.com/user-attachments/assets/cb752654-1489-4428-83fa-19eb750f984f)
 
+**Diagrama del sensor**
+
+![Imagen de WhatsApp 2025-07-21 a las 01 13 21_2349670d](https://github.com/user-attachments/assets/9885896b-79a2-40b0-9d4e-b2cefa933da2)
 
 ##
 Simulación con testbenches
