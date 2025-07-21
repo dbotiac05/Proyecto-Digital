@@ -21,3 +21,19 @@ Objetivos especificos
 ##
 ![Imagen de WhatsApp 2025-07-20 a las 21 04 23_a6fc7017](https://github.com/user-attachments/assets/d2cbcf3b-8a8b-4d64-a418-706c8ba06e98)
 ##
+Requrimentos funcionales:
+##
+Diagrama ASM/ Maquina de estados/ diagramas funcionales:
+##
+Diagrama RTL del SoC y su mòdulo:
+##
+Simulaciones:
+##
+Video simulacion:
+##
+Logs de make log-prn, make log-syn diagramas de flujo 
+##
+¿Còmo interactùa con entornos externos?
+##
+Video del proyecto
+##
