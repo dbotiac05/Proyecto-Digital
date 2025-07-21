@@ -395,64 +395,73 @@ flowchart TD
 
 
 
-# Diagrama Funcional del Sistema HC-SR04
+# Diagrama Funcional HC-SR04 (Versión Compatible GitHub)
 
+````markdown
 ```mermaid
 flowchart TD
-    %% ========== BLOQUES PRINCIPALES ==========
-    HARDWARE[["🛠 Configuración Hardware
+    %% ===== BLOQUES PRINCIPALES =====
+    HARDWARE["🛠 Configuración Hardware
     --------------------------
     • Clock 25MHz
     • con_out = 0
-    • con_in = 0"]]
+    • con_in = 0"]
     
-    TRIGGER[["⚡ Secuencia Trigger
+    TRIGGER["⚡ Secuencia Trigger
     --------------------------
     1. Trigger = 1
     2. Esperar 15 ciclos
-    3. Trigger = 0"]]
+    3. Trigger = 0"]
     
-    ECHO[["📡 Captura Echo
+    ECHO["📡 Captura Echo
     --------------------------
     • con_in = -97
     • Incrementar con_in
-    • Timeout: 375 ciclos"]]
+    • Timeout: 375 ciclos"]
     
-    SALIDA[["💾 Salida con_in
+    SALIDA["💾 Salida con_in
     --------------------------
     Valor final:
-    distancia ∝ con_in"]]
+    distancia ∝ con_in"]
 
-    %% ========== CONEXIONES ==========
+    %% ===== CONEXIONES =====
     HARDWARE --> TRIGGER
-    TRIGGER -->|"Pulso 15 ciclos"| ECHO
-    ECHO -->|"con_in válido"| SALIDA
-    ECHO -->|"Timeout"| HARDWARE
+    TRIGGER --> ECHO
+    ECHO --> SALIDA
+    ECHO --> HARDWARE
 
-    %% ========== ESTILOS ==========
-    classDef config fill:#E3F2FD,stroke:#1976D2,stroke-width:2px
-    classDef trigger fill:#FFF8E1,stroke:#FFA000,stroke-width:2px
-    classDef echo fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
-    classDef output fill:#F3E5F5,stroke:#8E24AA,stroke-width:2px
+    %% ===== ESTILOS BÁSICOS =====
+    class HARDWARE,TRIGGER,ECHO,SALIDA default
+text
 
-    class HARDWARE config
-    class TRIGGER trigger
-    class ECHO echo
-    class SALIDA output
+## Cambios realizados para compatibilidad:
 
-    %% ========== LEYENDA ==========
-    legend->
-        |
-        <span style='color:#1976D2'>🛠 Configuración</span> |
-        <span style='color:#FFA000'>⚡ Trigger</span> |
-        <span style='color:#388E3C'>📡 Recepción</span> |
-        <span style='color:#8E24AA'>💾 Resultado</span> |
-        <span style='color:#666'>15 ciclos = 600ns @25MHz</span>
-    endlegend
+1. **Simplificación de nodos**:
+   - Eliminados los dobles corchetes `[[ ]]` que causaban error
+   - Mantenido el formato de texto con guiones
 
+2. **Conexiones simplificadas**:
+   - Removidas las etiquetas en las flechas
+   - Conservada la estructura básica de flujo
 
+3. **Estilos mínimos**:
+   - Usada clase `default` para todos los nodos
+   - Eliminada la leyenda compleja
 
+## Versión original con ajustes mínimos:
 
+```mermaid
+flowchart TD
+    HARDWARE[["Config Hardware|• Clock 25MHz|• con_out=0|• con_in=0"]]
+    TRIGGER[["Secuencia Trigger|1. Trigger=1|2. 15 ciclos|3. Trigger=0"]]
+    ECHO[["Captura Echo|• con_in=-97|• Incrementar|• Timeout:375"]]
+    SALIDA[["Salida con_in|distancia ∝ con_in"]]
+    
+    HARDWARE --> TRIGGER
+    TRIGGER --> ECHO
+    ECHO --> SALIDA
+    ECHO --> HARDWARE
+```
 
 
 
