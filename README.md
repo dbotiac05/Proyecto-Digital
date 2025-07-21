@@ -195,12 +195,17 @@ flowchart TD
     linkStyle 2,3 stroke:#FF9800,stroke-width:2px
     linkStyle 4,5 stroke:#F44336,stroke-width:2px
 ```
+**Estados**
 
-**Notas de implementación:**
-1. GitHub no soporta el elemento `legend->` nativo en Mermaid
-2. Usamos `%%` para comentarios (no afectan el renderizado)
-3. Los `subgraph` deben tener nombres SIN espacios (usar guiones bajos)
-4. Los nodos deben definirse antes de conectarse
+- Espera de Consulta: El sistema permanece en espera de una señal de consulta (desde el usuario o el sistema central).
+- Medición de Distancia: Se activa el sensor HC-SR04 para medir la distancia al nivel del agua.
+- Procesamiento de Datos: El microcontrolador recibe la distancia y evalúa la señal de calidad del agua.
+- Comparación de Condiciones: Se compara si la distancia medida y la calidad cumplen los requisitos.
+- Decisión de Flujo:
+   FLUJO = 1: Se activa la bomba de agua.
+  FLUJO = 0: Se bloquea el sistema por incumplimiento de condiciones.
+
+
 
 
 **MAPAS DEL CONTROL DEL AGUA**
