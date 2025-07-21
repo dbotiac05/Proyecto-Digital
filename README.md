@@ -89,6 +89,65 @@ Diagrama ASM/ Maquina de estados/ diagramas funcionales:
 
 ![Imagen de WhatsApp 2025-07-21 a las 01 13 21_2349670d](https://github.com/user-attachments/assets/9885896b-79a2-40b0-9d4e-b2cefa933da2)
 
+**Maquinas de Estado**
+# Máquina de Estados Finita (FSM) del Sistema de Control de Flujo
+
+Este diagrama representa el flujo de control del sistema de medición de nivel de agua y activación de bomba, basado en el sensor ultrasónico HC-SR04 y una señal de calidad externa.
+
+```mermaid
+stateDiagram-v2
+
+    [*] --> S0_Inicio
+    S0_Inicio --> S1_ConfigurarHardware : iniciar sistema
+    S1_ConfigurarHardware --> S2_LeerEntradas : hardware listo
+    S2_LeerEntradas --> S3_EsperarConsulta
+
+    S3_EsperarConsulta --> S2_LeerEntradas : consulta != 1
+    S3_EsperarConsulta --> S4_Trigger : consulta == 1
+
+    S4_Trigger --> S5_Echo
+    S5_Echo --> S6_EvaluarNivel
+
+    S6_EvaluarNivel --> S8_Flujo0 : con_in < umbral
+    S6_EvaluarNivel --> S7_EvaluarCalidad : con_in >= umbral
+
+    S7_EvaluarCalidad --> S8_Flujo1 : calidad == 1
+    S7_EvaluarCalidad --> S8_Flujo0 : calidad != 1
+
+    S8_Flujo0 --> S9_SalidaFlujo
+    S8_Flujo1 --> S9_SalidaFlujo
+
+    S9_SalidaFlujo --> S2_LeerEntradas : ciclo continuo
+```
+
+---
+
+### Estados:
+
+- **S0_Inicio**: Estado inicial del sistema.
+- **S1_ConfigurarHardware**: Configuración del hardware.
+- **S2_LeerEntradas**: Recolección de datos de entrada.
+- **S3_EsperarConsulta**: Espera de señal desde el sistema central.
+- **S4_Trigger**: Enviar pulso de disparo al sensor HC-SR04.
+- **S5_Echo**: Lectura de tiempo de respuesta del sensor.
+- **S6_EvaluarNivel**: Comparación entre "con_in" y "umbral".
+- **S7_EvaluarCalidad**: Verifica si la calidad del agua es aceptable.
+- **S8_Flujo0**: Desactivar bomba (flujo = 0).
+- **S8_Flujo1**: Activar bomba (flujo = 1).
+- **S9_SalidaFlujo**: Salida de control de flujo.
+
+---
+
+Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma parte de sistemas automatizados de control de nivel de agua.
+
+
+
+
+
+
+
+
+
 ##
 Simulación con testbenches
 ##
