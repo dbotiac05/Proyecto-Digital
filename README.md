@@ -250,8 +250,6 @@ stateDiagram-v2
 
 
 
-# ⚙️ Diagrama Funcional del Sistema
-
 ```mermaid
 flowchart TB
     subgraph SENSOR["🔧 Capa Física"]
@@ -288,8 +286,3 @@ flowchart TB
         Rosa: Sistemas externos
     endlegend
 ```
-**Flujo de datos:**  
-1. El sensor envía mediciones al microcontrolador  
-2. El comparador evalúa si activar la bomba  
-3. El sistema central puede forzar bloqueo por calidad  
-4. La interfaz permite consultar estado manual  
