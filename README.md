@@ -195,6 +195,7 @@ flowchart TD
     linkStyle 2,3 stroke:#FF9800,stroke-width:2px
     linkStyle 4,5 stroke:#F44336,stroke-width:2px
 ```
+##
 **Estados**
 
 - Espera de Consulta: El sistema permanece en espera de una señal de consulta (desde el usuario o el sistema central).
@@ -266,11 +267,10 @@ Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma
 
 
 ---
+##
+### Estados:
 
-### Componentes:
 
-
-- **Configuración**: Inicializa el sistema y los registros.
 - **GenerarTrigger**: Envía el pulso ultrasónico desde el sensor HC-SR04.
 - **EsperaEcho**: Monitorea la señal de Echo del HC-SR04.
 - **CapturaEcho**: Mide el tiempo del pulso de retorno.
