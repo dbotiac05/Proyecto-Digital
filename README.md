@@ -22,6 +22,12 @@ Objetivos especificos
 ![Imagen de WhatsApp 2025-07-20 a las 21 04 23_a6fc7017](https://github.com/user-attachments/assets/d2cbcf3b-8a8b-4d64-a418-706c8ba06e98)
 ##
 Requrimentos funcionales:
+- Medición precisa de distancia usando el sensor HC-SR04.
+- Procesamiento digital de la señal de tiempo de retorno en una FPGA.
+- Cálculo del nivel de agua y generación de alerta si es bajo o alto.
+- Comunicación del dato medido a un servidor o aplicación por bluetooth (ESP32).
+- Sistema implementado en hardware con verificación mediante simulación.
+  
 ##
 Diagrama ASM/ Maquina de estados/ diagramas funcionales:
 ##
