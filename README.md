@@ -9,9 +9,11 @@ En el presente repositorio se expondrá en que conssitió el proyecto realizado 
 Bienvenidos a nuestro repositorio del proyecto final de nuestra clase de electrónica digital de la Universidad Nacional de Colombia del semestre 2025-I, el cual consistía en el diseño y posterior implementación de un Sensor para la medicion de agua, realizando una versión digital de este mismo mediante el uso de sensores ultrasónicos, FPGA y ESP32.
 ##
 🎯 Objetivo General
+
 🛠️ Diseñar e implementar un sistema de medición de nivel de agua en tiempo real, utilizando un sensor ultrasónico HC-SR04, un microcontrolador ESP32 para la adquisición y transmisión de datos, y una FPGA para el procesamiento y control de señales digitales, con el fin de generar un prototipo funcional y escalable para aplicaciones de monitoreo.
 ##
 🎯 Objetivos Específicos
+
 📏 Diseñar el sistema de adquisición de datos
 Utilizar el sensor HC-SR04 con el ESP32 para medir la distancia hasta la superficie del agua.
 
