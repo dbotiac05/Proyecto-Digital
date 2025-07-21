@@ -46,10 +46,9 @@ REQUERMIENTOS DEL PROYECTO
      
 🧪 Sistema implementado 
    - Se revisa el hardware y se verifica  mediante simulación.
+
 ##
-REQUERMIENTOS NO FUNCIONALES
-##
-##
+⚙️ Requerimientos No Funcionales
 ⏱️ Tiempo de respuesta adecuado
 El sistema debe responder a los cambios en el nivel de agua con una latencia mínima (< 1s).
 
