@@ -48,7 +48,7 @@ Objetivos especificos
    - Se revisa el hardware y se verifica  mediante simulación.
 
 ##
-**⚙✅ Requerimientos No Funcionales**
+**✅ Requerimientos No Funcionales**
 
 **⏱️ Tiempo de respuesta adecuado**
 - El sistema debe responder a los cambios en el nivel de agua..
