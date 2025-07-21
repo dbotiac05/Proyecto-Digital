@@ -245,3 +245,51 @@ stateDiagram-v2
 🔵 Transición automática  
 🟢 Condición verdadera  
 🔴 Condición falsa  
+
+
+
+
+
+# ⚙️ Diagrama Funcional del Sistema
+
+```mermaid
+flowchart TB
+    subgraph SENSOR["🔧 Capa Física"]
+        HC_SR04[[HC-SR04\nUltrasónico]]
+        Bomba[("🚰 Bomba de Agua")]
+    end
+    
+    subgraph CONTROL["💻 Capa de Control"]
+        Micro[["🖥️ Microcontrolador\n(Procesamiento)"]]
+        Comparador{["⚖️ Comparador\ncon_in vs umbral"]}
+    end
+    
+    subgraph SUPER["🌐 Capa Superior"]
+        Centro[["📡 Sistema Central"]]
+        UI[["🖥️ Interfaz Usuario"]]
+    end
+    
+    %% Conexiones
+    HC_SR04 -->|Trigger/Echo| Micro
+    Micro -->|con_in| Comparador
+    Comparador -->|FLUJO| Bomba
+    Centro -->|calidad| Micro
+    UI <-->|consulta| Micro
+    
+    %% Estilos
+    style SENSOR fill:#f0fff0,stroke:#2e8b57
+    style CONTROL fill:#f0f8ff,stroke:#4682b4
+    style SUPER fill:#fff0f5,stroke:#db7093
+    
+    legend->
+        **Color Guide**|
+        Verde: Dispositivos físicos|
+        Azul: Procesamiento|
+        Rosa: Sistemas externos
+    endlegend
+```
+**Flujo de datos:**  
+1. El sensor envía mediciones al microcontrolador  
+2. El comparador evalúa si activar la bomba  
+3. El sistema central puede forzar bloqueo por calidad  
+4. La interfaz permite consultar estado manual  
