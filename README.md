@@ -296,20 +296,28 @@ Este FSM se implementa en el  microcontrolador  ESP32 y forma parte de sistemas 
 
 ##
 Simulación con testbenches
+Simulación en verilog-gtkwave (make sim),  o vídeo de simulación en digital (únicamente youtube, no se acepta drive o similares)
 ##
 Diagrama RTL del SoC y su mòdulo:
+Diagrama RTL del SoC y de su módulo (make rtl, make rtl top=modulo_especifico)
 ##
 Simulaciones:
+Archivos fuentes del SoC, simulaciones, etc.
 ##
 Video simulacion:
 ##
 Logs de make log-prn, make log-syn diagramas de flujo 
+Logs de make log-pnr, make log-syn, donde se identifique los warnings y los recursos usados en el flujo de síntesis.
+
 ##
 ¿Còmo interactùa con entornos externos?
+Explicación sobre el cómo interactúa con aplicaciones externas (mqtt, chuck) etc.
 ##
 Video del proyecto
+Vídeo de youtube explicando el flujo de diseño (lo que se ve en el README.md) e implementación, agregar el enlace del vídeo del  README.md del módulo.
 ##
-
+. En el README.md del proyecto explicar el contexto y la arquitectura.
+##
 
 
 
