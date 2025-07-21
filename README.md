@@ -75,9 +75,9 @@ Objetivos especificos
 
 ##
 ##
-Simulación con testbenches
-##
 Diagrama ASM/ Maquina de estados/ diagramas funcionales:
+##
+Simulación con testbenches
 ##
 Diagrama RTL del SoC y su mòdulo:
 ##
