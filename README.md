@@ -250,51 +250,54 @@ stateDiagram-v2
 
 
 
-
-
-# ⚙️ Diagrama Funcional del Sistema
+##
+# ⚙️ Diagrama Funcional del Sistema de Control de Agua
 
 ```mermaid
-flowchart TB
-    %% Definición simplificada de nodos
-    HC_SR04["HC-SR04 Ultrasónico"]
-    Bomba["Bomba de Agua"]
-    Micro["Microcontrolador"]
-    Comparador{"Comparador\ncon_in vs umbral"}
-    Centro["Sistema Central"]
-    UI["Interfaz Usuario"]
-
-    %% Conexiones
-    HC_SR04 -->|Trigger/Echo| Micro
-    Micro -->|con_in| Comparador
-    Comparador -->|FLUJO| Bomba
-    Centro -->|calidad| Micro
-    UI <-->|consulta| Micro
-
-    %% Agrupamientos (sintaxis compatible)
-    subgraph Capa_Fisica["Capa Física"]
-        HC_SR04
-        Bomba
-    end
-
-    subgraph Capa_Control["Capa de Control"]
-        Micro
-        Comparador
-    end
-
-    subgraph Capa_Superior["Capa Superior"]
-        Centro
-        UI
-    end
-
-    %% Estilos básicos
-    classDef fisica fill:#f0fff0,stroke:#2e8b57
-    classDef control fill:#f0f8ff,stroke:#4682b4
-    classDef superior fill:#fff0f5,stroke:#db7093
+flowchart TD
+    %% ========== ENTRADAS ==========
+    SistemaCentral([Sistema Central]) -->|"calidad (1/0)"| Microcontrolador
+    Usuario[[Interfaz Usuario]] -->|"consulta (1/0)"| Microcontrolador
     
-    class Capa_Fisica fisica
-    class Capa_Control control
-    class Capa_Superior superior
+    %% ========== PROCESAMIENTO ==========
+    subgraph Microcontrolador["Microcontrolador (Procesamiento)"]
+        Programa[["Programa Principal"]]
+        Comparador{Comparador}
+        
+        Programa -->|"con_in"| Comparador
+        SistemaCentral -->|"calidad"| Programa
+    end
+    
+    %% ========== SENSORES ==========
+    subgraph Sensores["🔍 Sensores"]
+        Ultrasónico[["HC-SR04\nTrigger/Echo"]] -->|"Distancia (cm)"| Programa
+    end
+    
+    %% ========== ACTUADORES ==========
+    subgraph Actuadores["⚡ Actuadores"]
+        Bomba[["Bomba de Agua\nFLUJO=1/0"]] <--> Comparador
+    end
+    
+    %% ========== CONEXIONES CRÍTICAS ==========
+    Ultrasónico -.->|Interrupción| Programa
+    Comparador -->|"FLUJO=1\n(Cumple condiciones)"| Bomba
+    Comparador -->|"FLUJO=0\n(Blqueo por calidad)"| Bomba
+    
+    %% ========== ESTILOS ==========
+    classDef entrada fill:#e6ffe6,stroke:#4CAF50
+    classDef procesamiento fill:#e6f3ff,stroke:#2196F3
+    classDef sensor fill:#fff2e6,stroke:#FF9800
+    classDef actuador fill:#ffe6e6,stroke:#F44336
+    
+    class SistemaCentral,Usuario entrada
+    class Microcontrolador,Programa,Comparador procesamiento
+    class Ultrasónico sensor
+    class Bomba actuador
+    
+    %% ========== LEYENDA ==========
+    linkStyle 0,1 stroke:#4CAF50,stroke-width:2px
+    linkStyle 2,3 stroke:#FF9800,stroke-width:2px
+    linkStyle 4,5 stroke:#F44336,stroke-width:2px
 ```
 
 **Notas de implementación:**
