@@ -336,22 +336,41 @@ Este diagrama describe visualmente la relación funcional entre los módulos inv
 
 
 
-
-### 📊 Diagrama Funcional HC-SR04 (Versión Mermaid Compatible con GitHub)
+### 📊 Diagrama Funcional HC-SR04 (Versión Compatible GitHub)
 
 ```mermaid
 flowchart TD
-    HARDWARE["🛠 Configuración Hardware\n• Clock 25MHz\n• con_out = 0\n• con_in = 0"]
-    TRIGGER["⚡ Secuencia Trigger\n1. Trigger = 1\n2. Esperar 15 ciclos\n3. Trigger = 0"]
-    ECHO["📡 Captura Echo\n• con_in = -97\n• Incrementar con_in\n• Timeout: 375 ciclos"]
-    SALIDA["💾 Salida con_in\nValor final:\ndistancia ∝ con_in"]
+    %% ===== BLOQUES PRINCIPALES =====
+    HARDWARE["🛠 Configuración Hardware
+    --------------------------
+    • Clock 25MHz
+    • con_out = 0
+    • con_in = 0"]
+    
+    TRIGGER["⚡ Secuencia Trigger
+    --------------------------
+    1. Trigger = 1
+    2. Esperar 15 ciclos
+    3. Trigger = 0"]
+    
+    ECHO["📡 Captura Echo
+    --------------------------
+    • con_in = -97
+    • Incrementar con_in
+    • Timeout: 375 ciclos"]
+    
+    SALIDA["💾 Salida con_in
+    --------------------------
+    Valor final:
+    distancia ∝ con_in"]
 
+    %% ===== CONEXIONES =====
     HARDWARE --> TRIGGER
     TRIGGER --> ECHO
     ECHO --> SALIDA
     ECHO --> HARDWARE
 
-
-
-
+    %% ===== ESTILOS BÁSICOS =====
+    %% Se eliminó la línea conflictiva con 'class'
+    %% class HARDWARE,TRIGGER,ECHO,SALIDA default
 
