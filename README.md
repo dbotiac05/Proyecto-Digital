@@ -206,18 +206,22 @@ Video del proyecto
                 +--------+----------+
                          |
                          v
+                         
               +----------+----------+
               |   Microcontrolador  |
               +----------+----------+
                          |
+                         
             +------------+------------+
             |                         |
+            
 +-------------------+     +-------------------+
-|  Sensor Ultrasónico|     | Señal de Calidad |
+|  Sensor Ultrasónico|    | Señal de Calidad |
 |  (HC-SR04)         |     |  desde Central   |
 +---------+----------+     +------------------+
           | con_in
           v
+          
 +-------------------+
 | Comparación con   |
 | umbral            |
