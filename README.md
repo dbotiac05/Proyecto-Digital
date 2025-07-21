@@ -312,32 +312,38 @@ flowchart TD
 
 
 
+# Diagrama Funcional del Sistema de Control de Nivel de Agua
 
-##
-##
+Este diagrama representa el flujo funcional general del sistema: desde la recepción de comandos hasta la activación de una bomba, pasando por el sensor ultrasónico y la verificación de la calidad del agua.
+
 ```mermaid
-flowchart LR
-    %% Nodos principales
-    MCU[["<div style='font-size:18px;font-weight:bold'>🧠 Microcontrolador</div><hr><div style='text-align:left;font-size:14px'>• Clock 25MHz<br>• con_out (Trigger)<br>• con_in (Echo)<br>• Cálculo distancia</div>"]] -->|"📤 Trigger (10μs)"| SENSOR[["<div style='font-size:18px;font-weight:bold'>🔍 HC-SR04</div><hr><div style='text-align:left;font-size:14px'>• Trigger ← GPIO<br>• Echo → Interrupt<br>• Rango: 2-400cm</div>"]]
-    
-    SENSOR -->|"📥 Echo (Pulso)"| MCU
-    MCU -->|"📊 distancia = (con_in×0.0686) cm"| DISPLAY[["<div style='font-size:18px;font-weight:bold'>🖥 Display</div><hr><div style='text-align:left;font-size:14px'>• Mostrar distancia<br>• Indicador timeout</div>"]]
+flowchart TD
 
-    %% Estilos mejorados
-    classDef mcu fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#333
-    classDef sensor fill:#fff8e1,stroke:#ffa000,stroke-width:2px
-    classDef output fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    A[Sistema Central] -->|Petición de lectura| B[Microcontrolador]
+    B --> C[Sensor Ultrasónico HC-SR04]
+    B --> D[Señal de Calidad]
     
-    class MCU mcu
-    class SENSOR sensor
-    class DISPLAY output
+    C --> E{con_in >= umbral?}
+    E -- No --> F[capacidad = 0]
+    F --> G[flujo = 0]
 
-    %% Leyenda automática
-    legend->
-        |
-        <span style='color:#1976d2;font-weight:bold'>Microcontrolador</span> |
-        <span style='color:#ffa000;font-weight:bold'>Sensor</span> |
-        <span style='color:#388e3c;font-weight:bold'>Salida</span> |
-        <span style='color:#666'>📤: Salida digital</span> |
-        <span style='color:#666'>📥: Entrada por interrupción</span>
-    endlegend
+    E -- Sí --> H[capacidad = 1]
+    H --> I{calidad == 1?}
+    I -- No --> G
+    I -- Sí --> J[flujo = 1]
+
+    G & J --> K[Activar bomba / salida FLUJO]
+```
+
+---
+
+### Componentes:
+
+- **Sistema Central**: Dispara la consulta del estado del sistema.
+- **Microcontrolador**: Controla el flujo lógico y gestiona la entrada/salida.
+- **Sensor HC-SR04**: Mide el nivel de agua en el tanque.
+- **Comparador**: Determina si el nivel es suficiente (basado en `umbral`).
+- **Señal de calidad**: Entrada binaria que valida la calidad del agua.
+- **Flujo**: Resultado final que activa o no la bomba de agua.
+
+Este diagrama describe visualmente la relación funcional entre los módulos involucrados.
