@@ -409,58 +409,27 @@ Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma
 
 
 
+# Diagrama Funcional del Sistema MECO
 
-# 🛠️ Diagrama Funcional del Sistema MECO (Control HC-SR04)
+## Diagrama Principal
 
 ```mermaid
 flowchart TD
-    %% ========== BLOQUES PRINCIPALES ==========
-    HARDWARE[["🛠 Configuración Hardware
-    --------------------------
-    • Clock 25MHz
-    • con_out = 0
-    • con_in = 0"]]
-    
-    TRIGGER[["⚡ Secuencia Trigger
-    --------------------------
+    A[["**Configuración Inicial**
+    - Clock 25MHz
+    - con_out = 0
+    - con_in = -97"]] --> B[["**Generar Trigger**
     1. Trigger = 1
     2. Esperar 15 ciclos
     3. Trigger = 0"]]
     
-    ECHO[["📡 Captura Echo
-    --------------------------
-    • con_in = -97
-    • Incrementar con_in
-    • Timeout: 375 ciclos"]]
+    B --> C[["**Capturar Echo**
+    - Incrementar con_in
+    - Timeout: 375 ciclos"]]
     
-    SALIDA[["💾 Salida con_in
-    --------------------------
-    Valor final:
-    distancia ∝ con_in"]]
-
-    %% ========== CONEXIONES ==========
-    HARDWARE --> TRIGGER
-    TRIGGER -->|"Pulso 15 ciclos"| ECHO
-    ECHO -->|"con_in válido"| SALIDA
-    ECHO -->|"Timeout"| HARDWARE
-
-    %% ========== ESTILOS ==========
-    classDef config fill:#E3F2FD,stroke:#1976D2,stroke-width:2px
-    classDef trigger fill:#FFF8E1,stroke:#FFA000,stroke-width:2px
-    classDef echo fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
-    classDef output fill:#F3E5F5,stroke:#8E24AA,stroke-width:2px
-
-    class HARDWARE config
-    class TRIGGER trigger
-    class ECHO echo
-    class SALIDA output
-
-    %% ========== LEYENDA ==========
-    legend->
-        |
-        <span style='color:#1976D2'>🛠 Configuración</span> |
-        <span style='color:#FFA000'>⚡ Trigger</span> |
-        <span style='color:#388E3C'>📡 Recepción</span> |
-        <span style='color:#8E24AA'>💾 Resultado</span> |
-        <span style='color:#666'>15 ciclos = 600ns @25MHz</span>
-    endlegend
+    C -->|Valor válido| D[["**Salida con_in**
+    distancia = (con_in×0.0686) cm"]]
+    C -->|Timeout| A
+    
+    class A,B,C,D flowchart-node
+    classDef flowchart-node fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#222
