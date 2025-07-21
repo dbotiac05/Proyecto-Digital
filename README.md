@@ -409,27 +409,62 @@ Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma
 
 
 
-# Diagrama Funcional del Sistema MECO
 
-## Diagrama Principal
+
+
+
+
+
+# Diagrama Funcional Completo del Sistema MECO
+
+## Diagrama de Flujo Principal
 
 ```mermaid
+%%{init: {'theme': 'neutral', 'themeVariables': { 'primaryColor': '#f8f9fa'}}}%%
 flowchart TD
-    A[["**Configuración Inicial**
-    - Clock 25MHz
-    - con_out = 0
-    - con_in = -97"]] --> B[["**Generar Trigger**
-    1. Trigger = 1
-    2. Esperar 15 ciclos
-    3. Trigger = 0"]]
-    
-    B --> C[["**Capturar Echo**
-    - Incrementar con_in
-    - Timeout: 375 ciclos"]]
-    
-    C -->|Valor válido| D[["**Salida con_in**
-    distancia = (con_in×0.0686) cm"]]
-    C -->|Timeout| A
-    
-    class A,B,C,D flowchart-node
-    classDef flowchart-node fill:#f5f5f5,stroke:#333,stroke-width:2px,color:#222
+    %% ========== NODOS PRINCIPALES ==========
+    subgraph INIT["🔧 Inicialización"]
+        A[["**Configuración HW**
+        - Clock 25MHz
+        - GPIO: Trigger(out), Echo(in)
+        - Timer: Preescaler 1:1"]]
+    end
+
+    subgraph TRIG["⚡ Secuencia Trigger"]
+        B[["**Generar Pulso**
+        1. Trigger = HIGH
+        2. Delay 15 ciclos (600ns)
+        3. Trigger = LOW"]]
+    end
+
+    subgraph ECHO["📡 Captura Echo"]
+        C[["**Medición Tiempo**
+        - con_in = -97 (offset)
+        - Incrementar hasta:
+          • Flanco bajada (éxito)
+          • 375 ciclos (timeout)"]]
+    end
+
+    subgraph PROC["💻 Procesamiento"]
+        D[["**Cálculo Distancia**
+        distancia = (con_in × 0.0686) cm
+        Error: ±1cm"]]
+    end
+
+    %% ========== CONEXIONES ==========
+    INIT --> TRIG
+    TRIG --> ECHO
+    ECHO -->|"Dato válido"| PROC
+    ECHO -->|"Timeout"| INIT
+    PROC --> INIT
+
+    %% ========== ESTILOS ==========
+    classDef init fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef trig fill:#fff8e1,stroke:#ff8f00,stroke-width:2px
+    classDef echo fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef proc fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+
+    class INIT init
+    class TRIG trig
+    class ECHO echo
+    class PROC proc
