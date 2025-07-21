@@ -142,115 +142,6 @@ Este FSM se puede implementar en microcontroladores como Arduino o ESP32 y forma
 
 
 
-# Diagrama Funcional del Sistema de Control de Nivel de Agua
-
-Este diagrama representa el flujo funcional general del sistema: desde la recepción de comandos hasta la activación de una bomba, pasando por el sensor ultrasónico y la verificación de la calidad del agua.
-
-```mermaid
-flowchart TD
-
-    A[Sistema Central] -->|Petición de lectura| B[Microcontrolador]
-    B --> C[Sensor Ultrasónico HC-SR04]
-    B --> D[Señal de Calidad]
-    
-    C --> E{con_in >= umbral?}
-    E -- No --> F[capacidad = 0]
-    F --> G[flujo = 0]
-
-    E -- Sí --> H[capacidad = 1]
-    H --> I{calidad == 1?}
-    I -- No --> G
-    I -- Sí --> J[flujo = 1]
-
-    G & J --> K[Activar bomba / salida FLUJO]
-```
-
----
-
-### Componentes:
-
-- **Sistema Central**: Dispara la consulta del estado del sistema.
-- **Microcontrolador**: Controla el flujo lógico y gestiona la entrada/salida.
-- **Sensor HC-SR04**: Mide el nivel de agua en el tanque.
-- **Comparador**: Determina si el nivel es suficiente (basado en `umbral`).
-- **Señal de calidad**: Entrada binaria que valida la calidad del agua.
-- **Flujo**: Resultado final que activa o no la bomba de agua.
-
-
-
-
-
-
-
-
-##
-Simulación con testbenches
-##
-Diagrama RTL del SoC y su mòdulo:
-##
-Simulaciones:
-##
-Video simulacion:
-##
-Logs de make log-prn, make log-syn diagramas de flujo 
-##
-¿Còmo interactùa con entornos externos?
-##
-Video del proyecto
-##
-
-##
-# 🚦 Máquina de Estados del Sistema de Control de Agua
-
-```mermaid
-stateDiagram-v2
-    [*] --> Configuracion
-    Configuracion --> EsperaConsulta: "Inicialización\nhardware"
-    
-    state EsperaConsulta {
-        [*] --> Inactivo
-        Inactivo --> Activo: "consulta==1"
-        Activo --> Inactivo: "Timeout 5s"
-    }
-    
-    Activo --> Medicion: "Trigger\n(Envío pulso)"
-    Medicion --> Comparacion: "Echo\n(con_in = lectura)"
-    
-    state Comparacion {
-        [*] --> Evaluar
-        Evaluar --> TanqueVacio: "con_in < umbral\n(capacidad=0)"
-        Evaluar --> TanqueLleno: "con_in >= umbral\n(capacidad=1)"
-    }
-    
-    TanqueVacio --> [*]
-    TanqueLleno --> Calidad: "Verificar\ncalidad==1?"
-    
-    Calidad --> BombaLibre: "Calidad OK"
-    Calidad --> Bloqueo: "Calidad\nNo OK"
-    
-    BombaLibre --> FlujoON: "FLUJO=1"
-    Bloqueo --> FlujoOFF: "FLUJO=0"
-    
-    FlujoON --> EsperaConsulta
-    FlujoOFF --> EsperaConsulta
-
-    note right of Configuracion
-        **Variables clave:**
-        - umbral: 150cm (constante)
-        - calidad: Señal externa (0/1)
-        - FLUJO: Salida digital
-    end note
-```
-**Leyenda:**  
-🔵 Transición automática  
-🟢 Condición verdadera  
-🔴 Condición falsa  
-
-##
-
-
-
-##
 # ⚙️ Diagrama Funcional del Sistema de Control de Agua
 
 ```mermaid
@@ -305,6 +196,29 @@ flowchart TD
 2. Usamos `%%` para comentarios (no afectan el renderizado)
 3. Los `subgraph` deben tener nombres SIN espacios (usar guiones bajos)
 4. Los nodos deben definirse antes de conectarse
+
+
+
+
+
+
+
+##
+Simulación con testbenches
+##
+Diagrama RTL del SoC y su mòdulo:
+##
+Simulaciones:
+##
+Video simulacion:
+##
+Logs de make log-prn, make log-syn diagramas de flujo 
+##
+¿Còmo interactùa con entornos externos?
+##
+Video del proyecto
+##
+
 
 
 
