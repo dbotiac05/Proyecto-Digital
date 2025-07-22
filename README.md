@@ -300,6 +300,7 @@ Simulación en verilog-gtkwave (make sim),  o vídeo de simulación en digital (
 ##
 Diagrama RTL del SoC y su mòdulo:
 Diagrama RTL del SoC y de su módulo (make rtl, make rtl top=modulo_especifico)
+##
 
 **RTL DEL SOC**
 Este muestra toda la estructura del sistema embebido (SoC): incluye el procesador, los periféricos, los buses de comunicación, la memoria y los módulos personalizados como el del sensor HC-SR04
