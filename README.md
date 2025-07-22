@@ -303,16 +303,19 @@ Diagrama RTL del SoC y de su módulo (make rtl, make rtl top=modulo_especifico)
 ##
 
 **RTL DEL SOC**
+
 Este muestra toda la estructura del sistema embebido (SoC): incluye el procesador, los periféricos, los buses de comunicación, la memoria y los módulos personalizados como el del sensor HC-SR04
 
 ![Imagen de WhatsApp 2025-07-21 a las 04 35 25_7949625c](https://github.com/user-attachments/assets/8e651e66-d044-4c03-961e-797872daa5ed)
 
 **RLT DEL SENSOR**
+
 Este muestra sólo la lógica del módulo HC-SR04: cómo se manejan las señales echo, trigger, distance, los contadores, registros y comparadores internos.
 
 ![Imagen de WhatsApp 2025-07-21 a las 04 36 46_4793faf7](https://github.com/user-attachments/assets/932c94a1-f8c6-473e-a273-fa52fa5789c5)
 
 **RLT PERIP**
+
 Muestra la lógica de integración del módulo sensor como un periférico mapeado a memoria, con señales de dirección, lectura/escritura, selección de chip, etc.
 
 ![Imagen de WhatsApp 2025-07-21 a las 04 37 38_97ecb2bf](https://github.com/user-attachments/assets/dde206fa-ba98-4c15-a02d-e81f86635031)
