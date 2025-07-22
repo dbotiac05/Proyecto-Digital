@@ -291,17 +291,13 @@ Este FSM se implementa en el  microcontrolador  ESP32 y forma parte de sistemas 
 
 
 
-
-
-
-
 ##
 Simulación con testbenches
 Simulación en verilog-gtkwave (make sim),  o vídeo de simulación en digital (únicamente youtube, no se acepta drive o similares)
 ##
+
 Diagrama RTL del SoC y su mòdulo:
 Diagrama RTL del SoC y de su módulo (make rtl, make rtl top=modulo_especifico)
-##
 
 **RTL DEL SOC**
 
@@ -325,7 +321,8 @@ Muestra la lógica de integración del módulo sensor como un periférico mapead
 ##
 Simulaciones:
 Archivos fuentes del SoC, simulaciones, etc.
-##
+
+
 Medir la distancia sensor 
 
 ![Imagen de WhatsApp 2025-07-21 a las 18 38 21_c0e87ff0](https://github.com/user-attachments/assets/9fc2444b-c08e-4e10-88e3-dfffe0a1d6a5)
