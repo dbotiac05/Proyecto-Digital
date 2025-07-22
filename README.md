@@ -300,6 +300,17 @@ Simulación en verilog-gtkwave (make sim),  o vídeo de simulación en digital (
 ##
 Diagrama RTL del SoC y su mòdulo:
 Diagrama RTL del SoC y de su módulo (make rtl, make rtl top=modulo_especifico)
+
+**RTL DEL SOC**
+![Imagen de WhatsApp 2025-07-21 a las 04 35 25_7949625c](https://github.com/user-attachments/assets/8e651e66-d044-4c03-961e-797872daa5ed)
+
+**RLT DEL SENSOR**
+![Imagen de WhatsApp 2025-07-21 a las 04 36 46_4793faf7](https://github.com/user-attachments/assets/932c94a1-f8c6-473e-a273-fa52fa5789c5)
+
+**RLT PERIP**
+![Imagen de WhatsApp 2025-07-21 a las 04 37 38_97ecb2bf](https://github.com/user-attachments/assets/dde206fa-ba98-4c15-a02d-e81f86635031)
+
+
 ##
 Simulaciones:
 Archivos fuentes del SoC, simulaciones, etc.
