@@ -1,5 +1,6 @@
 # Proyecto-Digital
-Sensor de medida del agua 
+**Sensor de medida del agua**
+
 En el presente repositorio se expondrá en que conssitió el proyecto realizado en la aignatura de electrónica digital, mostrando el paso a paso realizado
 
 - Juan David Gomez 
